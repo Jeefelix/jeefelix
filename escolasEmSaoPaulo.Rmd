@@ -1,0 +1,35 @@
+---
+title: "Schools in São Paulo, Brazil"
+author: "Jéssica Félix"
+date: "4/21/2019"
+always_allow_html: yes
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Meu Primeiro Mapa
+
+```{r, echo=FALSE}
+library(leaflet)
+schoolIcon <- makeIcon(
+  iconUrl = "https://banner2.kisspng.com/20180906/ixb/kisspng-clip-art-school-vector-graphics-computer-icons-por-smart-classrooms-set-to-be-launched-in-four-govern-5b91b4e190d248.3256695715362756815932.jpg",
+  iconWidth = 31*215/230, iconHeight = 31,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+
+schoolLatLong <- data.frame(
+  lat = c(-23.5695683, -23.5695683, -23.5785685),
+  lng = c(-46.6268568, -46.6307194, -46.6237083))
+
+schoolSites <- c(
+  "<a href='https://www.fiap.com.br/colegio/'>Fiap School</a>",
+  "<a href='http://www.pueridomus.com.br/'>Pueri Domus School</a>",
+  "<a href='http://fisk.com.br'>Fisk English School</a>"
+)
+schoolLatLong %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = schoolIcon, popup = schoolSites)
+```
+
